@@ -1,26 +1,26 @@
 // increment the input value
-function setInputPlusValue(id, num) {
+function setInputPlusValue(id, num, value) {
     const phoneInputFiled = document.getElementById(id + 'input');
     const phoneInputFiledValueString = phoneInputFiled.value;
     let phoneInputValue = parseInt(phoneInputFiledValueString);
-    phoneInputFiled.value = phoneInputValue += 1;
-    const newElementValue = phoneInputFiled.value * num;
-    setElementValue(id, newElementValue)
-}
 
-// decrement the input value
-function setInputMinusValue(id, num) {
-    const phoneInputFiled = document.getElementById(id + 'input');
-    const phoneInputFiledValueString = phoneInputFiled.value;
-    let phoneInputValue = parseInt(phoneInputFiledValueString);
-    let newInputValue = phoneInputValue -= 1;
-    if (newInputValue >= 0) {
-        phoneInputFiled.value = newInputValue;
-        let totalCost = phoneInputFiled.value * num
-        setElementValue(id, totalCost)
+    if (value == 'plus') {
+        phoneInputFiled.value = phoneInputValue += 1;
+        const newElementValue = phoneInputFiled.value * num;
+        setElementValue(id, newElementValue)
     }
     else {
-        alert('please provide the positive number')
+        if (phoneInputFiled.value > 0) {
+            let newValue = phoneInputValue -= 1;
+            phoneInputFiled.value = newValue
+            let totalCost = phoneInputFiled.value * num
+            setElementValue(id, totalCost)
+
+        }
+        else {
+            alert('please provide the positive number')
+        }
+
     }
 }
 
@@ -38,24 +38,24 @@ function getElementValue(id) {
 
 //phone part
 document.getElementById('phone-plus').addEventListener('click', function () {
-    setInputPlusValue('phone-', 1219);
+    setInputPlusValue('phone-', 1219, 'plus');
     subTotal()
 });
 
 document.getElementById('phone-minus').addEventListener('click', function () {
-    setInputMinusValue('phone-', 1219);
+    setInputPlusValue('phone-', 1219);
     subTotal()
 })
 
 //case part
 
 document.getElementById('case-plus').addEventListener('click', function () {
-    setInputPlusValue('case-', 59);
+    setInputPlusValue('case-', 59, 'plus');
     subTotal()
 })
 
 document.getElementById('case-minus').addEventListener('click', function () {
-    setInputMinusValue('case-', 59);
+    setInputPlusValue('case-', 59);
     subTotal()
 });
 
