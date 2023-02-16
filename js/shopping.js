@@ -74,3 +74,5 @@ function subTotal() {
     let total = subTotal + totalTexNumber;
     setElementValue('price-', total);
 }
+
+
